@@ -1,4 +1,4 @@
-# Bash Scripting
+# cheatsheet
 
 Example
 

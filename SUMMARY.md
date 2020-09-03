@@ -1,5 +1,5 @@
 # Table of contents
 
-* [Bash Scripting](README.md)
+* [cheatsheet](README.md)
 * [Refrences](refrences.md)
 
