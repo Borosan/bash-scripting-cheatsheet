@@ -45,7 +45,7 @@ echo '$1$2hello'        #Writes literally $1$2hello on screen.
 echo "$1$2hello"        #Writes value of parameters 1 and 2 and string hello.
 ```
 
-### Redirection:
+### Redirection
 
 ```text
 python hello.py > output.txt   # stdout to (file)
@@ -55,6 +55,115 @@ python hello.py 2>&1           # stderr to stdout
 python hello.py 2>/dev/null    # stderr to (null)
 python hello.py &>/dev/null    # stdout and stderr to (null)
 python hello.py < foo.txt      # feed foo.txt to stdin for python
+```
+
+### Brace expansion
+
+```text
+{A,B}	Same as A B
+{A,B}.js	Same as A.js B.js
+{1..5}	Same as 1 2 3 4 5
+```
+
+## Parameter expansions
+
+### Basics
+
+```text
+name="John"
+echo ${name}
+echo ${name/J/j}    #=> "john" (substitution)
+echo ${name:0:2}    #=> "Jo" (slicing)
+echo ${name::2}     #=> "Jo" (slicing)
+echo ${name::-1}    #=> "Joh" (slicing)
+echo ${name:(-1)}   #=> "n" (slicing from right)
+echo ${name:(-2):1} #=> "h" (slicing from right)
+echo ${food:-Cake}  #=> $food or "Cake"
+
+length=2
+echo ${name:0:length}  #=> "Jo"
+```
+
+```text
+STR="/path/to/foo.cpp"
+echo ${STR%.cpp}    # /path/to/foo
+echo ${STR%.cpp}.o  # /path/to/foo.o
+echo ${STR%/*}      # /path/to
+
+echo ${STR##*.}     # cpp (extension)
+echo ${STR##*/}     # foo.cpp (basepath)
+
+echo ${STR#*/}      # path/to/foo.cpp
+echo ${STR##*/}     # foo.cpp
+
+echo ${STR/foo/bar} # /path/to/bar.cpp
+STR="Hello world"
+echo ${STR:6:5}   # "world"
+echo ${STR: -5:5}  # "world"
+SRC="/path/to/foo.cpp"
+BASE=${SRC##*/}   #=> "foo.cpp" (basepath)
+DIR=${SRC%$BASE}  #=> "/path/to/" (dirpath)
+```
+
+### Substitution
+
+```text
+${FOO%suffix}	Remove suffix
+${FOO#prefix}	Remove prefix
+${FOO%%suffix}	Remove long suffix
+${FOO##prefix}	Remove long prefix
+${FOO/from/to}	Replace first match
+${FOO//from/to}	Replace all
+${FOO/%from/to}	Replace suffix
+${FOO/#from/to}	Replace prefix
+```
+
+### Length
+
+```text
+${#FOO}	Length of $FOO
+```
+
+### Default Values
+
+```text
+${FOO:-val}	$FOO, or val if unset (or null)
+${FOO:=val}	Set $FOO to val if unset (or null)
+${FOO:+val}	val if $FOO is set (and not null)
+${FOO:?message}	Show error message and exit if $FOO is unset (or null)
+
+#Omitting the : removes the (non)nullity checks, 
+#e.g. ${FOO-val} expands to val if unset otherwise $FOO.
+```
+
+### Comment
+
+```text
+# Single line comment
+: '
+This is a
+multi line
+comment
+'
+```
+
+### Substrings
+
+```text
+${FOO:0:3}	Substring (position, length)
+${FOO:(-3):3}	Substring from the right
+```
+
+### Manipulations
+
+```text
+STR="HELLO WORLD!"
+echo ${STR,}   #=> "hELLO WORLD!" (lowercase 1st letter)
+echo ${STR,,}  #=> "hello world!" (all lowercase)
+
+STR="hello world!"
+echo ${STR^}   #=> "Hello world!" (uppercase 1st letter)
+echo ${STR^^}  #=> "HELLO WORLD!" (all uppercase)
 ```
 
 ## Conditionals:
@@ -194,15 +303,16 @@ fi
 ### for:
 
 ```text
-#Basic for loop
-for i in /etc/rc.*; do
-  echo $i
+#basic for loop
+for i in 1 2 3 4 5
+do
+   echo "Welcome $i times"
 done
 ```
 
 ```text
-#C-Like for loop
-for ((i = 0 ; i < 100 ; i++)); do
+#Basic for loop
+for i in /etc/rc.*; do
   echo $i
 done
 ```
@@ -211,6 +321,13 @@ done
 #Ranges
 for i in {1..5}; do
     echo "Welcome $i"
+done
+```
+
+```text
+#C-Like for loop
+for ((i = 0 ; i < 100 ; i++)); do
+  echo $i
 done
 ```
 
@@ -346,7 +463,7 @@ $1	First argument
 $_	Last argument of the previous command
 ```
 
-### Arrays:
+### Arrays
 
 ```text
 Defining arrays
@@ -497,4 +614,8 @@ if ping -c 1 google.com; then
   echo "It appears you have a working internet connection"
 fi
 ```
+
+
+
+Payam Borosan.Goodluck
 
