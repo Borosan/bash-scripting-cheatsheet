@@ -6,8 +6,6 @@
 
 [https://bash.cyberciti.biz/guide/While\_loop](https://bash.cyberciti.biz/guide/While_loop)
 
-[https://linuxize.com/post/bash-until-loop/](https://linuxize.com/post/bash-until-loop/)
-
 [https://devhints.io/bash](https://devhints.io/bash)
 
 [http://johnstowers.co.nz/pages/bash-cheat-sheet.html](http://johnstowers.co.nz/pages/bash-cheat-sheet.html)

@@ -346,8 +346,6 @@ $1	First argument
 $_	Last argument of the previous command
 ```
 
-
-
 ### Arrays:
 
 ```text
