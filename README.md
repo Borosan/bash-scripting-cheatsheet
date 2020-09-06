@@ -273,7 +273,34 @@ do
 done < "$file"
 ```
 
+### Until:
 
+```text
+#!/bin/bash
+
+counter=0
+
+until [ $counter -gt 5 ]
+do
+  echo Counter: $counter
+  ((counter++))
+done
+```
+
+### Case:
+
+```text
+Case/switch
+case "$1" in
+  start | up)
+    vagrant up
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop|ssh}"
+    ;;
+esac
+```
 
 ### Functions:
 
@@ -406,7 +433,7 @@ bash -x scriptname  # echo commands after command-line processing
 set -o xtrace       # alternative (set option in script)
 ```
 
-### Miscellaneous:
+## Miscellaneous:
 
 ```text
 #Numeric calculations
@@ -420,7 +447,56 @@ command -V cd
 #=> "cd is a function/alias/whatever"
 ```
 
+```text
+#Heredoc:
+cat <<END
+hello world
+END
+```
 
+```text
+#printf:
+printf "Hello %s, I'm %s" Sven Olga
+#=> "Hello Sven, I'm Olga
 
+printf "1 + 1 = %d" 2
+#=> "1 + 1 = 2"
 
+printf "This is how you print a float: %f" 2
+#=> "This is how you print a float: 2.000000"
+```
+
+```text
+#Reading input
+echo -n "Proceed? [y/n]: "
+read ans
+echo $ans
+
+#Reading  Just one character:
+read -n 1 ans    
+```
+
+```text
+#Getting options
+while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
+  -V | --version )
+    echo $version
+    exit
+    ;;
+  -s | --string )
+    shift; string=$1
+    ;;
+  -f | --flag )
+    flag=1
+    ;;
+esac; shift; done
+if [[ "$1" == '--' ]]; then shift; fi
+```
+
+```text
+#Check for command’s result
+if ping -c 1 google.com; then
+  echo "It appears you have a working internet connection"
+fi
+```
 
