@@ -1,6 +1,6 @@
 # cheatsheet
 
-Example
+### Example
 
 ```text
 #!/bin/bash
@@ -11,7 +11,7 @@ echo "Hello $NAME!"
 exit 0
 ```
 
-Variables:
+### Variables:
 
 ```text
 varname=value                # defines a variable
@@ -30,7 +30,7 @@ echo $?                      # displays the exit status of the last command
 echo $0                      # display Filename of the shell script
 ```
 
-Quoting:
+### Quoting:
 
 ```text
 \c             #Take character c literally.
@@ -45,7 +45,7 @@ echo '$1$2hello'        #Writes literally $1$2hello on screen.
 echo "$1$2hello"        #Writes value of parameters 1 and 2 and string hello.
 ```
 
-Redirection:
+### Redirection:
 
 ```text
 python hello.py > output.txt   # stdout to (file)
@@ -57,9 +57,9 @@ python hello.py &>/dev/null    # stdout and stderr to (null)
 python hello.py < foo.txt      # feed foo.txt to stdin for python
 ```
 
-Conditionals:
+## Conditionals:
 
-Test Operators 
+### Test Operators 
 
 In Bash, the `test` command takes one of the following syntax forms:
 
@@ -69,7 +69,9 @@ In Bash, the `test` command takes one of the following syntax forms:
 
 To make the script portable, prefer using the old test `[` command which is available on all POSIX shells. The new upgraded version of the `test` command `[[` \(double brackets\) is supported on most modern systems using Bash, Zsh, and Ksh as a default shell.  To negate the test expression, use the logical `NOT` \(`!`\) operator.
 
-Checking Numbers:_Note that a shell variable could contain a string that represents a number. If you want to check the numerical value use one of the following:_
+### Checking Numbers
+
+_Note that a shell variable could contain a string that represents a number. If you want to check the numerical value use one of the following:_
 
 ```text
 [[ NUM -eq NUM ]]	Equal
@@ -80,7 +82,7 @@ Checking Numbers:_Note that a shell variable could contain a string that represe
 [[ NUM -ge NUM ]]	Greater than or equal
 ```
 
-Checking Strings:
+### Checking Strings
 
 ```text
 [[ -z STRING ]]	Empty string
@@ -90,7 +92,7 @@ Checking Strings:
 
 ```
 
-Checking files:
+### Checking files
 
 ```text
 [[ -e FILE ]]	Exists
@@ -106,7 +108,7 @@ Checking files:
 [[ FILE1 -ef FILE2 ]]	Same files
 ```
 
-More conditions:
+### More conditions:
 
 ```text
 [[ -o noclobber ]]	If OPTIONNAME is enabled
@@ -115,7 +117,7 @@ More conditions:
 [[ X || Y ]]	Or
 ```
 
-if statement:
+### if statement:
 
 ```text
 #if Statement 
@@ -187,9 +189,9 @@ else
 fi
 ```
 
-Loops:
+## Loops:
 
-for:
+### for:
 
 ```text
 #Basic for loop
@@ -219,7 +221,7 @@ for i in {5..50..5}; do
 done
 ```
 
-while:
+### while:
 
 ```text
 n=1
@@ -273,7 +275,7 @@ done < "$file"
 
 
 
-Functions:
+### Functions:
 
 ```text
 # Defining functions:
@@ -319,7 +321,7 @@ $_	Last argument of the previous command
 
 
 
-Arrays:
+### Arrays:
 
 ```text
 Defining arrays
@@ -359,7 +361,7 @@ for i in "${arrayName[@]}"; do
 done
 ```
 
-Dictionaries:
+### Dictionaries:
 
 ```text
 Defining
@@ -391,7 +393,7 @@ for key in "${!sounds[@]}"; do
 done
 ```
 
-Debugging
+### Debugging
 
 ```text
 bash -n scriptname  # don't run commands; check for syntax errors only
@@ -404,7 +406,7 @@ bash -x scriptname  # echo commands after command-line processing
 set -o xtrace       # alternative (set option in script)
 ```
 
-Miscellaneous:
+### Miscellaneous:
 
 ```text
 #Numeric calculations
